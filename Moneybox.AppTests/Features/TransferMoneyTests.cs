@@ -15,7 +15,36 @@ namespace Moneybox.App.Features.Tests
         [TestMethod()]
         public void ExecuteNegativeAmountTest()
         {
-            
+            var fromGuid = Guid.NewGuid();
+            var toGuid = Guid.NewGuid();
+
+            var fromAcct = new Account();
+            fromAcct.Id = fromGuid;
+            fromAcct.Balance = 1000;
+
+            var toAcct = new Account();
+            toAcct.Id = toGuid;
+            toAcct.PaidIn = 0;
+
+            decimal amountToTransfer = -20;
+
+            var accountRepo = new Mock<IAccountRepository>();
+            accountRepo.Setup(m => m.GetAccountById(fromGuid)).Returns(fromAcct);
+            accountRepo.Setup(m => m.GetAccountById(toGuid)).Returns(toAcct);
+
+            var notification = new Mock<INotificationService>();
+
+            var transfer = new TransferMoney(accountRepo.Object, notification.Object);
+
+            try
+            {
+                transfer.Execute(fromGuid, toGuid, amountToTransfer);
+                Assert.Fail();
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Negative transfers not allowed", ex.Message);
+            }
         }
 
         [TestMethod()]
@@ -32,7 +61,6 @@ namespace Moneybox.App.Features.Tests
 
             var accountRepo = new Mock<IAccountRepository>();
             accountRepo.Setup(m => m.GetAccountById(fromGuid)).Returns(fromAcct);
-            accountRepo.Setup(m => m.GetAccountById(fromGuid)).Returns(fromAcct);
 
             var notification = new Mock<INotificationService>();
 
@@ -45,7 +73,7 @@ namespace Moneybox.App.Features.Tests
             }
             catch (Exception ex)
             {
-                Assert.AreEqual(ex.Message, "Insufficient funds to make transfer");
+                Assert.AreEqual("Insufficient funds to make transfer", ex.Message);
             }
         }
 
@@ -58,6 +86,7 @@ namespace Moneybox.App.Features.Tests
             var fromAcct = new Account();
             fromAcct.Id = fromGuid;
             fromAcct.Balance = 1000;
+
             var toAcct = new Account();
             toAcct.Id = toGuid;
             toAcct.PaidIn = 5000;
@@ -79,7 +108,7 @@ namespace Moneybox.App.Features.Tests
             }
             catch (Exception ex)
             {
-                Assert.AreEqual(ex.Message, "Account pay in limit reached");
+                Assert.AreEqual("Account pay in limit reached", ex.Message);
             }
         }
 
