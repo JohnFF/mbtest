@@ -17,35 +17,16 @@ namespace Moneybox.App.Features
 
         public void Execute(Guid fromAccountId, Guid toAccountId, decimal amount)
         {
-            if (amount <= 0)
-            {
-                throw new Exception("Negative or 0 transfers not allowed");
-            }
+            // We now check that amount > 0 in verifyWithdrawlPermitted,
 
             var from = this.accountRepository.GetAccountById(fromAccountId);
             var to = this.accountRepository.GetAccountById(toAccountId);
 
-            var fromBalance = from.Balance - amount;
-            if (fromBalance < 0m)
-            {
-                throw new InvalidOperationException("Insufficient funds to make transfer");
-            }
+            from.VerifyWithdrawalPermitted(amount);
+            to.VerifyPayInPermitted(amount);
 
-            if (fromBalance < 500m)
-            {
-                this.notificationService.NotifyFundsLow(from.User.Email);
-            }
-
-            var paidIn = to.PaidIn + amount;
-            if (paidIn > Account.PayInLimit)
-            {
-                throw new InvalidOperationException("Account pay in limit reached");
-            }
-
-            if (Account.PayInLimit - paidIn < 500m)
-            {
-                this.notificationService.NotifyApproachingPayInLimit(to.User.Email);
-            }
+            from.CheckAndSendNotifications(this.notificationService);
+            to.CheckAndSendNotifications(this.notificationService);
 
             from.Balance = from.Balance - amount;
             from.Withdrawn = from.Withdrawn - amount;

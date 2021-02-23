@@ -123,7 +123,7 @@ namespace Moneybox.App.Features.Tests
             fromAcct.Balance = 1000;
             var toAcct = new Account();
             toAcct.Id = toGuid;
-            toAcct.Balance = 0;
+            toAcct.Balance = 600;
 
             decimal amountToTransfer = 20;
 
@@ -137,8 +137,8 @@ namespace Moneybox.App.Features.Tests
 
             transfer.Execute(fromGuid, toGuid, amountToTransfer);
 
-            Assert.AreEqual(fromAcct.Balance, 980);
-            Assert.AreEqual(toAcct.Balance, amountToTransfer);
+            Assert.AreEqual(980, fromAcct.Balance);
+            Assert.AreEqual(620, toAcct.Balance);
         }
     }
 }
