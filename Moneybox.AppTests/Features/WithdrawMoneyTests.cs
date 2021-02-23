@@ -38,7 +38,7 @@ namespace Moneybox.App.Features.Tests
             }
             catch (Exception ex)
             {
-                Assert.AreEqual("Negative or 0 transfers not allowed", ex.Message);
+                Assert.AreEqual("Negative or 0 transactions not allowed", ex.Message);
             }
         }
 
@@ -68,7 +68,7 @@ namespace Moneybox.App.Features.Tests
             }
             catch (Exception ex)
             {
-                Assert.AreEqual("Insufficient funds to make withdrawal", ex.Message);
+                Assert.AreEqual("Insufficient funds to complete transaction", ex.Message);
             }
         }
 
