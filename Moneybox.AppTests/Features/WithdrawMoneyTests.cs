@@ -73,36 +73,6 @@ namespace Moneybox.App.Features.Tests
         }
 
         [TestMethod()]
-        public void ExecutePayInLimitTest()
-        {
-            var fromGuid = Guid.NewGuid();
-            var toGuid = Guid.NewGuid();
-
-            var fromAcct = new Account();
-            fromAcct.Id = fromGuid;
-            fromAcct.Balance = 1000;
-
-            decimal amountToWithdraw = 20;
-
-            var accountRepo = new Mock<IAccountRepository>();
-            accountRepo.Setup(m => m.GetAccountById(fromGuid)).Returns(fromAcct);
-
-            var notification = new Mock<INotificationService>();
-
-            var withdraw = new WithdrawMoney(accountRepo.Object, notification.Object);
-
-            try
-            {
-                withdraw.Execute(fromGuid, amountToWithdraw);
-                Assert.Fail();
-            }
-            catch (Exception ex)
-            {
-                Assert.AreEqual("Account pay in limit reached", ex.Message);
-            }
-        }
-
-        [TestMethod()]
         public void ExecuteSuccessfulWithdrawTest()
         {
             var fromGuid = Guid.NewGuid();
