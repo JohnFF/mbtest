@@ -17,6 +17,11 @@ namespace Moneybox.App.Features
 
         public void Execute(Guid fromAccountId, Guid toAccountId, decimal amount)
         {
+            if (amount <= 0)
+            {
+                throw new Exception("Negative or 0 transfers not allowed");
+            }
+
             var from = this.accountRepository.GetAccountById(fromAccountId);
             var to = this.accountRepository.GetAccountById(toAccountId);
 
