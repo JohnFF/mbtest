@@ -17,6 +17,10 @@ namespace Moneybox.App
 
         public decimal PaidIn { get; set; }
 
+        /// <summary>
+        /// Throws an exception if the withdrawal is not permitted.
+        /// </summary>
+        /// <param name="withdrawalAmount"></param>
         public void VerifyWithdrawalPermitted(decimal withdrawalAmount)
         {
             // Do not allow negative withdrawals at all.
@@ -33,6 +37,9 @@ namespace Moneybox.App
             }
         }
 
+        /// <summary>
+        /// Throws an exception if the pay in is not permitted.
+        /// </summary>
         public void VerifyPayInPermitted(decimal payInAmount)
         {
             // Do not allow negative pay ins at all.
