@@ -22,15 +22,10 @@ namespace Moneybox.App.Features.Tests
             fromAcct.Id = fromGuid;
             fromAcct.Balance = 1000;
 
-            var toAcct = new Account();
-            toAcct.Id = toGuid;
-            toAcct.PaidIn = 0;
-
             decimal amountToWithdraw = -20;
 
             var accountRepo = new Mock<IAccountRepository>();
             accountRepo.Setup(m => m.GetAccountById(fromGuid)).Returns(fromAcct);
-            accountRepo.Setup(m => m.GetAccountById(toGuid)).Returns(toAcct);
 
             var notification = new Mock<INotificationService>();
 
@@ -38,7 +33,7 @@ namespace Moneybox.App.Features.Tests
 
             try
             {
-                withdraw.Execute(fromGuid, toGuid, amountToWithdraw);
+                withdraw.Execute(fromGuid, amountToWithdraw);
                 Assert.Fail();
             }
             catch (Exception ex)
@@ -68,7 +63,7 @@ namespace Moneybox.App.Features.Tests
 
             try
             {
-                withdraw.Execute(fromGuid, toGuid, amountToWithdraw);
+                withdraw.Execute(fromGuid, amountToWithdraw);
                 Assert.Fail();
             }
             catch (Exception ex)
@@ -87,15 +82,10 @@ namespace Moneybox.App.Features.Tests
             fromAcct.Id = fromGuid;
             fromAcct.Balance = 1000;
 
-            var toAcct = new Account();
-            toAcct.Id = toGuid;
-            toAcct.PaidIn = 5000;
-
             decimal amountToWithdraw = 20;
 
             var accountRepo = new Mock<IAccountRepository>();
             accountRepo.Setup(m => m.GetAccountById(fromGuid)).Returns(fromAcct);
-            accountRepo.Setup(m => m.GetAccountById(toGuid)).Returns(toAcct);
 
             var notification = new Mock<INotificationService>();
 
@@ -103,7 +93,7 @@ namespace Moneybox.App.Features.Tests
 
             try
             {
-                withdraw.Execute(fromGuid, toGuid, amountToWithdraw);
+                withdraw.Execute(fromGuid, amountToWithdraw);
                 Assert.Fail();
             }
             catch (Exception ex)
@@ -121,24 +111,19 @@ namespace Moneybox.App.Features.Tests
             var fromAcct = new Account();
             fromAcct.Id = fromGuid;
             fromAcct.Balance = 1000;
-            var toAcct = new Account();
-            toAcct.Id = toGuid;
-            toAcct.Balance = 0;
 
             decimal amountToWithdraw = 20;
 
             var accountRepo = new Mock<IAccountRepository>();
             accountRepo.Setup(m => m.GetAccountById(fromGuid)).Returns(fromAcct);
-            accountRepo.Setup(m => m.GetAccountById(toGuid)).Returns(toAcct);
 
             var notification = new Mock<INotificationService>();
 
             var withdraw = new WithdrawMoney(accountRepo.Object, notification.Object);
 
-            withdraw.Execute(fromGuid, toGuid, amountToWithdraw);
+            withdraw.Execute(fromGuid, amountToWithdraw);
 
             Assert.AreEqual(fromAcct.Balance, 980);
-            Assert.AreEqual(toAcct.Balance, amountToWithdraw);
         }
     }
 }
