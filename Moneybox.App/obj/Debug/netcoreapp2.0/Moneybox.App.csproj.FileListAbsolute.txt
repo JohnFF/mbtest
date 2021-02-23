@@ -1,0 +1,12 @@
+C:\Users\ThisI\Desktop\moneybox-withdrawal-master\src\Moneybox.App\bin\Debug\netcoreapp2.0\Moneybox.App.deps.json
+C:\Users\ThisI\Desktop\moneybox-withdrawal-master\src\Moneybox.App\bin\Debug\netcoreapp2.0\Moneybox.App.runtimeconfig.json
+C:\Users\ThisI\Desktop\moneybox-withdrawal-master\src\Moneybox.App\bin\Debug\netcoreapp2.0\Moneybox.App.runtimeconfig.dev.json
+C:\Users\ThisI\Desktop\moneybox-withdrawal-master\src\Moneybox.App\bin\Debug\netcoreapp2.0\Moneybox.App.dll
+C:\Users\ThisI\Desktop\moneybox-withdrawal-master\src\Moneybox.App\bin\Debug\netcoreapp2.0\Moneybox.App.pdb
+C:\Users\ThisI\Desktop\moneybox-withdrawal-master\src\Moneybox.App\obj\Debug\netcoreapp2.0\Moneybox.App.csprojAssemblyReference.cache
+C:\Users\ThisI\Desktop\moneybox-withdrawal-master\src\Moneybox.App\obj\Debug\netcoreapp2.0\Moneybox.App.AssemblyInfoInputs.cache
+C:\Users\ThisI\Desktop\moneybox-withdrawal-master\src\Moneybox.App\obj\Debug\netcoreapp2.0\Moneybox.App.AssemblyInfo.cs
+C:\Users\ThisI\Desktop\moneybox-withdrawal-master\src\Moneybox.App\obj\Debug\netcoreapp2.0\Moneybox.App.csproj.CoreCompileInputs.cache
+C:\Users\ThisI\Desktop\moneybox-withdrawal-master\src\Moneybox.App\obj\Debug\netcoreapp2.0\Moneybox.App.dll
+C:\Users\ThisI\Desktop\moneybox-withdrawal-master\src\Moneybox.App\obj\Debug\netcoreapp2.0\Moneybox.App.pdb
+C:\Users\ThisI\Desktop\moneybox-withdrawal-master\src\Moneybox.App\obj\Debug\netcoreapp2.0\Moneybox.App.genruntimeconfig.cache
