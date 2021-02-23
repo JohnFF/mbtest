@@ -18,7 +18,6 @@ namespace Moneybox.App.Features
         public void Execute(Guid fromAccountId, Guid toAccountId, decimal amount)
         {
             // We now check that amount > 0 in verifyWithdrawlPermitted,
-
             var from = this.accountRepository.GetAccountById(fromAccountId);
             var to = this.accountRepository.GetAccountById(toAccountId);
 

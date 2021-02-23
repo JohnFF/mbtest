@@ -22,14 +22,14 @@ namespace Moneybox.App
             // Do not allow negative withdrawals at all.
             if (withdrawalAmount <= 0)
             {
-                throw new Exception("Negative or 0 transfers not allowed");
+                throw new Exception("Negative or 0 transactions not allowed");
             }
 
             // Check account has enough balance.
             var fromBalance = Balance - withdrawalAmount;
             if (fromBalance < 0m)
             {
-                throw new InvalidOperationException("Insufficient funds to make transfer");
+                throw new InvalidOperationException("Insufficient funds to complete transaction");
             }
         }
 
@@ -38,7 +38,7 @@ namespace Moneybox.App
             // Do not allow negative pay ins at all.
             if (payInAmount <= 0)
             {
-                throw new Exception("Negative or 0 transfers not allowed");
+                throw new Exception("Negative or 0 transactions not allowed");
             }
 
             // Check account has enough balance.

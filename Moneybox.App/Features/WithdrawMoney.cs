@@ -17,7 +17,17 @@ namespace Moneybox.App.Features
 
         public void Execute(Guid fromAccountId, decimal amount)
         {
-            // TODO:
+            // We now check that amount > 0 in verifyWithdrawlPermitted,
+            var from = this.accountRepository.GetAccountById(fromAccountId);
+            
+            from.VerifyWithdrawalPermitted(amount);
+            
+            from.CheckAndSendNotifications(this.notificationService);
+            
+            from.Balance = from.Balance - amount;
+            from.Withdrawn = from.Withdrawn - amount;
+
+            this.accountRepository.Update(from);
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Moneybox.App.Features.Tests
             }
             catch (Exception ex)
             {
-                Assert.AreEqual("Negative or 0 withdrawals not allowed", ex.Message);
+                Assert.AreEqual("Negative or 0 transfers not allowed", ex.Message);
             }
         }
 
