@@ -28,7 +28,7 @@ namespace Moneybox.App.Features
             to.CheckAndSendNotifications(this.notificationService);
 
             from.Balance = from.Balance - amount;
-            from.Withdrawn = from.Withdrawn - amount;
+            from.Withdrawn = from.Withdrawn + amount;
 
             to.Balance = to.Balance + amount;
             to.PaidIn = to.PaidIn + amount;
